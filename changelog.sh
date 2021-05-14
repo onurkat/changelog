@@ -6,12 +6,11 @@
 echo "***** Changelog Generator *****"
 echo "Checking Git status..."
 
-CHECK_GIT=$(git status | grep "not a git repository")
-if [ "" = "$CHECK_GIT" ]; then
-echo "OK."
-else
+if ! git ls-files >& /dev/null; then
 echo "Error! Couldn't find the git repository. Are you in the correct directory?"
 return
+else
+echo "OK."
 fi
 echo "Executing Git fetch to get latest tags..."
 git fetch --prune origin +refs/tags/*:refs/tags/* > /dev/null 2>&1
@@ -72,7 +71,7 @@ echo "*$LATEST_TAG $ENV Deployment*"
 echo ""
 echo "*Changelog (from $OLD_TAG)*"
 
-git log --date=format:"%d %b %H:%M" --pretty="- %s (%aN - %ad)" $LATEST_TAG...$OLD_TAG | grep -v "Merge pull request" | grep -v "Merge branch "
+git log --grep="HP|hp|Hp" --date=format:"%d %b %H:%M" --pretty="- %s (%aN - %ad)" $LATEST_TAG...$OLD_TAG | grep -i "HP" | grep -v "Merge pull request" | grep -v "Merge branch "
 
 echo ""
 echo ""

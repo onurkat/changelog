@@ -1,4 +1,4 @@
-#!/bin/bash -i
+#!/bin/bash
 
 # Author : Onur Kat
 # Contact info : github.com/onurkat

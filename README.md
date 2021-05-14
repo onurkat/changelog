@@ -7,7 +7,7 @@ Use following commands to setup for the script for easy access.
 Open new terminal and execute following command to install the script.
 
 ```
-bash <(curl -s https://raw.githubusercontent.com/onurkat/changelog/main/install.sh)
+source <(curl -s https://raw.githubusercontent.com/onurkat/changelog/main/install.sh)
 ```
 
 Press `y` and the script will do the rest!
