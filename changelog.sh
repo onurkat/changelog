@@ -71,7 +71,7 @@ echo "*$LATEST_TAG $ENV Deployment*"
 echo ""
 echo "*Changelog (from $OLD_TAG)*"
 
-git log --grep="HP|hp|Hp" --date=format:"%d %b %H:%M" --pretty="- %s (%aN - %ad)" $LATEST_TAG...$OLD_TAG | grep -i "HP" | grep -v "Merge pull request" | grep -v "Merge branch "
+git log --date=format:"%d %b %H:%M" --pretty="- %s (%aN - %ad)" $LATEST_TAG...$OLD_TAG | grep -i "HP" | grep -v "Merge pull request" | grep -v "Merge branch "
 
 echo ""
 echo ""
