@@ -3,6 +3,8 @@
 # Author : Onur Kat
 # Contact info : github.com/onurkat
 
+JIRA_PREFIX="HP"
+
 echo "***** Changelog Generator *****"
 echo "Checking Git status..."
 
@@ -12,7 +14,7 @@ return
 else
 echo "OK."
 fi
-echo "Executing Git fetch to get latest tags..."
+echo "Executing Git fetch to get latest tags from remote..."
 git fetch --prune origin +refs/tags/*:refs/tags/* > /dev/null 2>&1
 echo "OK."
 
@@ -47,11 +49,11 @@ break
 done
 fi
 
-echo "Listing last 10 tags. Please select a base tag to get changelogs from -> to "$LATEST_TAG
+echo "Listing last 10 tags. Please select a base tag to list changes from -> to "$LATEST_TAG
 TAGS=$(git tag --sort=-version:refname | head -n 11 | grep -v $LATEST_TAG)
 select OLD_TAG in $TAGS
 do
-echo "Selected tag: "$OLD_TAG
+echo "Selected base tag: "$OLD_TAG
 break
 done
 echo "Please select the environment..."
@@ -71,7 +73,7 @@ echo "*$LATEST_TAG $ENV Deployment*"
 echo ""
 echo "*Changelog (from $OLD_TAG)*"
 
-git log --date=format:"%d %b %H:%M" --pretty="- %s (%aN - %ad)" $LATEST_TAG...$OLD_TAG | grep -i "HP" | grep -v "Merge pull request" | grep -v "Merge branch "
+git log --date=format:"%d %b %H:%M" --pretty="- %s (%aN - %ad)" $LATEST_TAG...$OLD_TAG | grep -i $JIRA_PREFIX | grep -v "Merge pull request" | grep -v "Merge branch "
 
 echo ""
 echo ""

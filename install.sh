@@ -44,5 +44,5 @@ sudo rm -rf $TEMP_DIR
 source ~/.bashrc
 cd ~/
 
-echo "Installation has been completed. Now you can use 'changelog' command for your projects."
+echo "Installation has been completed. Now you can use 'changelog' command for your git projects."
 
