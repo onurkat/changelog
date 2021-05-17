@@ -3,8 +3,6 @@
 # Author : Onur Kat
 # Contact info : github.com/onurkat
 
-JIRA_PREFIX="HP"
-
 echo "***** Changelog Generator *****"
 echo "Checking Git status..."
 
@@ -71,9 +69,9 @@ echo ""
 
 echo "*$LATEST_TAG $ENV Deployment*"
 echo ""
-echo "*Changelog (from $OLD_TAG)*"
+echo "*Changelog (since $OLD_TAG)*"
 
-git log --date=format:"%d %b %H:%M" --pretty="- %s (%aN - %ad)" $LATEST_TAG...$OLD_TAG | grep -i $JIRA_PREFIX | grep -v "Merge pull request" | grep -v "Merge branch "
+git log --date=format:"%d %b %H:%M" --pretty="- %s (%aN - %ad)" $LATEST_TAG...$OLD_TAG | grep -i 'HP\|hotfix' | grep -v "Merge pull request" | grep -v "Merge branch "
 
 echo ""
 echo ""
