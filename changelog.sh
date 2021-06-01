@@ -71,7 +71,7 @@ echo "*$LATEST_TAG $ENV Deployment*"
 echo ""
 echo "*Changelog (since $OLD_TAG)*"
 
-git log --date=format:"%d %b %H:%M" --pretty="- %s (%aN - %ad)" $LATEST_TAG...$OLD_TAG | grep -i 'HP\|hotfix' | grep -v "Merge pull request" | grep -v "Merge branch "
+git log --date=format:"%d %b %H:%M" --pretty="- %s (%aN - %ad)" $LATEST_TAG...$OLD_TAG | grep -i 'HP\|hotfix' | grep -v "Merge pull request" | grep -v "Merge branch " | grep -v "Merge remote-tracking branch "
 
 echo ""
 echo ""
