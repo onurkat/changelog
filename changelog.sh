@@ -16,7 +16,7 @@ echo "Executing Git fetch to get latest tags from remote..."
 git fetch --prune origin +refs/tags/*:refs/tags/* > /dev/null 2>&1
 echo "OK."
 
-LATEST_TAG=$(git tag --sort=-version:refname | head -n 1)
+LATEST_TAG=$(git tag --sort=-committerdate| head -n 1)
 
 echo "Use latest tag for deployment or change?"
 echo " 1) Use latest $LATEST_TAG"
@@ -39,7 +39,7 @@ done
 
 if [ "2" = "$TAG_SEL_FLAG" ]; then
 echo "Listing last 10 tags. Please select a deployment tag..."
-TAGS=$(git tag --sort=-version:refname | head -n 10)
+TAGS=$(git tag --sort=-committerdate| head -n 10)
 select LATEST_TAG in $TAGS
 do
 echo "Selected deployment tag: "$LATEST_TAG
@@ -48,7 +48,7 @@ done
 fi
 
 echo "Listing last 10 tags. Please select a base tag to list changes from -> to "$LATEST_TAG
-TAGS=$(git tag --sort=-version:refname | head -n 11 | grep -v $LATEST_TAG)
+TAGS=$(git tag --sort=-committerdate| head -n 11 | grep -v $LATEST_TAG)
 select OLD_TAG in $TAGS
 do
 echo "Selected base tag: "$OLD_TAG
