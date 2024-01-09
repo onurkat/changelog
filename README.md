@@ -24,3 +24,5 @@ Now you can use `changelog` command.
 - Select the environment.
 
 Changelog is done.
+
+qasd
